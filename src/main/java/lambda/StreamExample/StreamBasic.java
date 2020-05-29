@@ -1,5 +1,6 @@
 package lambda.StreamExample;
 
+import lambda.StreamExample.collector.SelfTodoListCollector;
 import lambda.StreamExample.entity.Dish;
 
 import java.io.IOException;
@@ -7,6 +8,8 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
 import java.util.function.IntSupplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -205,7 +208,59 @@ public class StreamBasic {
                 }))
         );
         System.out.println(dishesByTypeColoricLevel);
+        //按子组收集数据
+        Map<Dish.Type, Long> typeLongMap = menu.stream().collect(
+                groupingBy(Dish::getType,counting())
+        );
+        System.out.println(typeLongMap);
+
+
+        //查找菜单中每个不同的种类中热量最高的菜肴
+        Map<Dish.Type,Optional<Dish>> mostColoricsDish = menu.stream().collect(
+                groupingBy(Dish::getType,maxBy(Comparator.comparing(Dish::getColories)))
+        );
+        System.out.println(mostColoricsDish);
+        Map<Dish.Type,Dish> mostColDish = menu.stream().collect(
+                Collectors.toMap(Dish::getType, Function.identity(), BinaryOperator.maxBy(Comparator.comparing(Dish::getColories)))
+        );
+        System.out.println(mostColDish);
+
+        Map<Dish.Type,Integer> totalColoricsByType = menu.stream().collect(
+                groupingBy(Dish::getType,summingInt(Dish::getColories))
+        );
+        System.out.println(totalColoricsByType);
+
+        Map<Dish.Type,Set<ColoricLevel>> coloricLevelType = menu.stream().collect(
+                groupingBy(Dish::getType,mapping(dish->{
+                    if(dish.getColories() <= 400) return ColoricLevel.DIET;
+                    else if(dish.getColories() <= 700) return ColoricLevel.NORMAL;
+                    else return ColoricLevel.FAT;
+                },toSet()))
+        );
+        System.out.println(coloricLevelType);
+
+        // 分区
+        Map<Boolean, List<Dish>> partitionMenu = menu.stream().collect(partitioningBy(Dish::isVegetation));
+        System.out.println(partitionMenu);
+
+  /*      // 找到素食和非素食中热量最高的菜：
+        Map<Boolean,Dish> mostColoricsPartByVegetation = menu.stream().collect(partitioningBy(Dish::isVegetation,collectingAndThen(maxBy(Comparator.comparingInt(Dish::getColories)),Optional::get)));
+        System.out.println(mostColoricsPartByVegetation);*/
+
+        // 将数字按质数和非质数分区
+        IntStream.rangeClosed(2,100).boxed().filter(StreamBasic::isPrime).forEach(System.out::println);
+        System.out.println(IntStream.rangeClosed(2,10).boxed().collect(partitioningBy(StreamBasic::isPrime)));
+
+        //使用自定义Collector
+        List<Dish> dishes = menu.stream().collect(new SelfTodoListCollector<>());
+        System.out.println(dishes);
     }
     public enum ColoricLevel  {DIET,NORMAL,FAT};
+
+    public static boolean isPrime(int candiNum){
+        int candiNumStart = (int)Math.sqrt((double)candiNum);
+        return IntStream.rangeClosed(2,candiNumStart).noneMatch(i -> candiNum % i == 0);
+    }
+
 
 }
