@@ -1,9 +1,8 @@
-package lambda.factoryPattern;
+package lambda.designPattern.factoryPattern;
 
-import lambda.factoryPattern.entity.Loan;
-import lambda.factoryPattern.entity.Product;
+import lambda.designPattern.factoryPattern.entity.Loan;
+import lambda.designPattern.factoryPattern.entity.Product;
 
-import java.nio.file.LinkOption;
 import java.util.function.Supplier;
 
 public class factoryPattern {

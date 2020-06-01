@@ -1,4 +1,4 @@
-package lambda.factoryPattern.entity;
+package lambda.designPattern.factoryPattern.entity;
 
 public class Product {
     public Product() {

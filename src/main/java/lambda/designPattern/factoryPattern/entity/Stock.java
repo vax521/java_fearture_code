@@ -1,13 +1,13 @@
-package lambda.factoryPattern.entity;
+package lambda.designPattern.factoryPattern.entity;
 
-public class Bond extends Product {
+public class Stock extends Product {
     public   String name;
 
-    public Bond() {
-        this.name = "Bond";
+    public Stock() {
+        this.name = "Stock";
     }
 
-    public Bond(String name) {
+    public Stock(String name) {
         super(name);
     }
 
@@ -20,4 +20,5 @@ public class Bond extends Product {
     public void setName(String name) {
         this.name = name;
     }
+
 }

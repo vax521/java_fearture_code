@@ -1,4 +1,4 @@
-package lambda.dutyChainPattern;
+package lambda.designPattern.dutyChainPattern;
 
 public class SpellCheckProcessor extends ProcessingObject<String> {
     @Override

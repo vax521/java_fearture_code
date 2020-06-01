@@ -1,4 +1,4 @@
-package lambda.dutyChainPattern;
+package lambda.designPattern.dutyChainPattern;
 
 public abstract  class ProcessingObject<T> {
     protected ProcessingObject<T> processingObject;

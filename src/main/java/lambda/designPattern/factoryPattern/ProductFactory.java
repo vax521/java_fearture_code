@@ -1,9 +1,9 @@
-package lambda.factoryPattern;
+package lambda.designPattern.factoryPattern;
 
-import lambda.factoryPattern.entity.Bond;
-import lambda.factoryPattern.entity.Loan;
-import lambda.factoryPattern.entity.Product;
-import lambda.factoryPattern.entity.Stock;
+import lambda.designPattern.factoryPattern.entity.Bond;
+import lambda.designPattern.factoryPattern.entity.Loan;
+import lambda.designPattern.factoryPattern.entity.Product;
+import lambda.designPattern.factoryPattern.entity.Stock;
 
 import java.util.HashMap;
 import java.util.Map;
