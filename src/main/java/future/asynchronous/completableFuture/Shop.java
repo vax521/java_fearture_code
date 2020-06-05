@@ -42,10 +42,15 @@ public class Shop {
     }
 
     //使用工厂方法supplyAsync创建CompletableFuture
-
-
     //异步API
     public Future<Double> getPriceAsynByFactory(String product){
        return CompletableFuture.supplyAsync(()->calculatePrice(product));
+    }
+
+    public  String getPriceWithDiscount(String product){
+        final Random random = new Random();
+        double price =  calculatePrice(product);
+        Discount.Code code = Discount.Code.values()[random.nextInt((Discount.Code.values().length))];
+        return String.format("%s:%.2f:%s",name,price,code);
     }
 }
