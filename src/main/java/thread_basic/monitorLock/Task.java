@@ -1,4 +1,4 @@
-package concurrent_test.monitorLock;
+package thread_basic.monitorLock;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;

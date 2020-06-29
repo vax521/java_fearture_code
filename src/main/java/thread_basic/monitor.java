@@ -1,4 +1,4 @@
-package concurrent_test;
+package thread_basic;
 
 public class monitor {
 }
