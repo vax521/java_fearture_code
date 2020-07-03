@@ -1,0 +1,14 @@
+Java 8并发API中包含的CompletableFuture类提供了一种新的同步机制。
+该类实现了Future对象和CompletionStage接口，它们具有如下两个特征。
+• 作为Future对象，CompletableFuture会在将来返回一个结果。
+• 作为CompletionStage对象，可以在一个或多个CompletableFuture对象完成任务以后，执行额外的异步任务。
+有如下3种使用CompletableFuture类的方法。
+• 主动创建一个CompletableFuture对象，使其作为两个任务之间的同步点。一个任务创建一个值，并作为Completable对象的complete()方法的参数，该值将由CompletableFuture返回，另一个任务可以调用get()或join()方法等待该值。
+• 通过CompletableFuture类的静态方法runAsync()和supplyAsync()来执行Runnable或Supplier。这些方法将会返回一个CompletableFuture对象，并且在这些任务结束运行以后，该对象将进入完备态。在第二种情况下，Supplier的返回值即为CompletableFuture对象完备态的值。
+• 附加声明的任务将会在一个或多个CompletableFuture对象执行完毕后异步执行。该任务可以实现Runnable、Function、Consumer或BiConsumer接口。
+
+
+首先，创建一个用来生成种子任务，下一个任务用该种子来生成随机数字列表。然后，执行3个并行任务。
+步骤1：将计算随机数字列表中最接近1000的数字。
+步骤2：将计算随机数字列表中的最大数。
+步骤3：将计算随机数字列表中，最大数与最小数的平均值。
