@@ -1,0 +1,5 @@
+Executor框架提供了ThreadPoolExecutor类，来使用一个线程池去处理Callable或者Runnable类型的任务，
+因此用户不用再关注任何与线程创建相关的操作。当提交一个任务给执行器时，它会根据执行器配置尽快执行。
+但是有可能你不需要尽快执行提交的任务，而是想要在一段时间后执行任务或是周期性地执行任务。
+基于以上需求，Executor框架提供了ScheduledExecutorService接口和它的实现类ScheduledThreadPool-Executor类。
+本章介绍创建ScheduledExecutorService接口的方法，以及在给定时间之后用它来调度任务执行的方法。
