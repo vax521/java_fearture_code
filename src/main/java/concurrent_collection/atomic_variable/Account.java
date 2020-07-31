@@ -40,4 +40,9 @@ public class Account {
         this.opreation.increment();
         this.commission.accumulate(amount);
     }
+    public void subAmount(long amount){
+        this.balance.getAndAdd(-amount);
+        this.opreation.increment();
+        this.commission.accumulate(amount);
+    }
 }
