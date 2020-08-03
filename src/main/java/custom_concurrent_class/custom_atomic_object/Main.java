@@ -1,6 +1,6 @@
 package custom_concurrent_class.custom_atomic_object;
 
-import thread_synchronization.method_sync.no_sync_case.Sensor;
+
 
 public class Main {
     public static void main(String[] args) {
